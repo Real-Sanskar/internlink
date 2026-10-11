@@ -1,0 +1,1236 @@
+/* ============================================
+   INTERNLINK — MAIN STYLESHEET
+   ============================================
+   
+   TABLE OF CONTENTS:
+   
+   1. CSS Variables
+   2. Base Styles
+   3. Scrollbar
+   4. Typography
+   5. Auth Pages (Login/Register)
+   6. Sidebar
+   7. Top Navbar
+   8. Main Content & Dashboard Layout
+   9. Welcome Banner
+   10. Profile Completion Bar
+   11. Stat Cards
+   12. Section Cards
+   13. Activity Table
+   14. Quick Actions
+   15. Empty State
+   16. Chart Container
+   17. Listing Cards
+   18. Status Badges
+   19. Form Styles
+   20. Notification Dropdown
+   21. Error & Alert Styles
+   22. Buttons
+   23. Mobile Responsive
+   
+   ============================================ */
+
+
+/* ============================================
+   1. CSS VARIABLES
+   ============================================
+   All colors, sizes, shadows defined here.
+   Change one value = changes whole website.
+   ============================================ */
+
+:root {
+    /* Primary Colors */
+    --primary:        #4F46E5;
+    --primary-dark:   #3730A3;
+    --primary-light:  #EEF2FF;
+    
+    /* Accent Colors */
+    --secondary:      #06B6D4;
+    --success:        #10B981;
+    --warning:        #F59E0B;
+    --danger:         #EF4444;
+    
+    /* Neutral Colors */
+    --dark:           #1E293B;
+    --light:          #F8FAFC;
+    --muted:          #64748B;
+    --border:         #E2E8F0;
+    
+    /* Layout */
+    --sidebar-width:  260px;
+    
+    /* Shadows */
+    --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md:      0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg:      0 10px 30px rgba(0, 0, 0, 0.12);
+    
+    /* Border Radius */
+    --radius:         12px;
+    
+    /* Transitions */
+    --transition:     all 0.3s ease;
+}
+
+
+/* ============================================
+   2. BASE STYLES
+   ============================================
+   Applied to every element on every page.
+   Sets the foundation of how things look.
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ============================================
+   3. SCROLLBAR
+   ============================================
+   Custom scrollbar for webkit browsers
+   (Chrome, Edge, Safari).
+   Makes it thin and themed.
+   ============================================ */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+
+/* ============================================
+   4. TYPOGRAPHY
+   ============================================
+   Font weights used as utility classes.
+   ============================================ */
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+
+/* ============================================
+   5. AUTH PAGES (Login / Register)
+   ============================================
+   Full screen centered card layout.
+   Gradient background.
+   Used in: auth/login.php, auth/register.php
+   ============================================ */
+
+/* Full page wrapper with gradient background */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        135deg,
+        var(--primary) 0%,
+        var(--secondary) 100%
+    );
+    padding: 20px;
+}
+
+/* White card that holds the form */
+.auth-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 40px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Logo section at top of auth card */
+.auth-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-logo h2 {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.auth-logo p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Heading inside auth card */
+.auth-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+/* Subtitle below heading */
+.auth-subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+/* Role selection cards (Student / Company) */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.role-card {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.role-card:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.role-card.active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.role-card i {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.role-card span {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+/* Submit button on auth pages */
+.btn-auth {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    margin-top: 10px;
+}
+
+.btn-auth:hover {
+    background: var(--primary-dark);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Input field with icon inside */
+.input-group-icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Icon inside input field */
+.input-group-icon > i {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: var(--muted);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Push input text right to make room for icon */
+.input-group-icon .form-control {
+    padding-left: 38px;
+}
+
+/* Error message position inside icon group */
+.input-group-icon .invalid-feedback {
+    order: 1;
+}
+
+/* Eye icon to show/hide password */
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
+    color: var(--muted);
+    z-index: 1;
+    background: none;
+    border: none;
+}
+
+
+/* ============================================
+   6. SIDEBAR
+   ============================================
+   Fixed left sidebar for dashboard pages.
+   Dark background with light text.
+   Menu items highlight when active.
+   Used in: includes/sidebar.php
+   ============================================ */
+
+/* Sidebar container */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--dark);
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+    overflow-y: auto;
+}
+
+/* Logo area at top of sidebar */
+.sidebar-brand {
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.sidebar-brand h4 {
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* "Link" text in brand is colored */
+.sidebar-brand span {
+    color: var(--secondary);
+}
+
+/* Menu list */
+.sidebar-menu {
+    padding: 15px 0;
+    list-style: none;
+    margin: 0;
+}
+
+/* Each menu item link */
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 25px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+}
+
+/* Hover and active state for menu items */
+.sidebar-menu li a:hover,
+.sidebar-menu li a.active {
+    background: rgba(79, 70, 229, 0.3);
+    color: white;
+    border-left-color: var(--primary);
+}
+
+/* Icon inside menu item */
+.sidebar-menu li a i {
+    font-size: 1.1rem;
+    width: 20px;
+}
+
+/* Divider line between menu sections */
+.sidebar-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+}
+
+/* Small label text above menu sections */
+.sidebar-label {
+    padding: 8px 25px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    list-style: none;
+}
+
+/* Logout link styled in red */
+.logout-link {
+    color: rgba(239, 68, 68, 0.7) !important;
+}
+
+.logout-link:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #EF4444 !important;
+    border-left-color: #EF4444 !important;
+}
+
+/* Sidebar toggle button (visible only on mobile) */
+.sidebar-toggle {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--dark);
+}
+
+
+.sidebar-close{
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Make sure overlay is always in CSS (even when hidden) */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+.sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ============================================
+   7. TOP NAVBAR
+   ============================================
+   Horizontal bar at top of main content.
+   Shows page title, notifications, user menu.
+   Sticks to top when scrolling.
+   Used in: includes/topbar.php
+   ============================================ */
+
+.top-navbar {
+    background: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+/* Page title in top navbar */
+.page-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 0;
+}
+
+/* Right side of navbar (notif + user) */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Notification bell button */
+.notif-btn {
+    position: relative;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--muted);
+    transition: var(--transition);
+}
+
+.notif-btn:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+/* Red dot on bell icon */
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--danger);
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* User avatar + name in navbar */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+/* Circular avatar with initial letter */
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* User name text */
+.user-name {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.2;
+}
+
+/* Role text below name */
+.user-role {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: capitalize;
+}
+
+
+/* ============================================
+   8. MAIN CONTENT & DASHBOARD LAYOUT
+   ============================================
+   The main area to the right of sidebar.
+   Contains page content with padding.
+   Used in: student/index.php and all 
+   dashboard pages.
+   ============================================ */
+
+/* Wrapper that holds sidebar + main content */
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Main content area (right of sidebar) */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    min-height: 100vh;
+}
+
+/* Padding inside main content */
+.page-content {
+    padding: 30px;
+}
+
+
+/* ============================================
+   9. WELCOME BANNER
+   ============================================
+   Gradient banner at top of dashboard.
+   Shows greeting message to user.
+   Used in: student/index.php
+   ============================================ */
+
+.welcome-banner {
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+    border-radius: var(--radius);
+    padding: 30px;
+    color: white;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative circle in background */
+.welcome-banner::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.welcome-banner h4 {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.welcome-banner p {
+    opacity: 0.9;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+
+/* ============================================
+   10. PROFILE COMPLETION BAR
+   ============================================
+   Shows how much of profile is filled.
+   Gradient progress bar.
+   Used in: student/index.php
+   ============================================ */
+
+.completion-bar {
+    background: var(--border);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.completion-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+
+/* ============================================
+   11. STAT CARDS
+   ============================================
+   Small cards showing numbers/statistics.
+   Each has a colored top border and icon.
+   Used in: student/index.php, admin/index.php
+   ============================================ */
+
+.stat-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Lift card on hover */
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Colored line at top of card */
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+/* Different colors for different cards */
+.stat-card.primary::before { background: var(--primary); }
+.stat-card.success::before { background: var(--success); }
+.stat-card.warning::before { background: var(--warning); }
+.stat-card.danger::before  { background: var(--danger);  }
+
+/* Icon box inside stat card */
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+/* Icon background colors */
+.stat-icon.primary { background: var(--primary-light); color: var(--primary); }
+.stat-icon.success { background: #D1FAE5;             color: var(--success); }
+.stat-icon.warning { background: #FEF3C7;             color: var(--warning); }
+.stat-icon.danger  { background: #FEE2E2;             color: var(--danger);  }
+
+/* Big number in stat card */
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+/* Small label below number */
+.stat-label {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+
+/* ============================================
+   12. SECTION CARDS
+   ============================================
+   White box containers used to group content.
+   Used in: all dashboard pages for 
+   tables, forms, lists etc.
+   ============================================ */
+
+.section-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 25px;
+}
+
+/* Title bar inside section card */
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ============================================
+   13. ACTIVITY TABLE
+   ============================================
+   Table showing recent applications or data.
+   Clean design with hover effect.
+   Used in: student/index.php (Recent Applications)
+   ============================================ */
+
+.activity-table {
+    width: 100%;
+}
+
+/* Table header */
+.activity-table th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    font-weight: 600;
+    padding: 10px 15px;
+    border-bottom: 2px solid var(--border);
+}
+
+/* Table cells */
+.activity-table td {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+/* Row hover effect */
+.activity-table tr:hover {
+    background: var(--light);
+}
+
+
+/* ============================================
+   14. QUICK ACTIONS
+   ============================================
+   Shortcut buttons on dashboard sidebar.
+   Icon + text layout with hover effect.
+   Used in: student/index.php (right column)
+   ============================================ */
+
+.quick-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--dark);
+    transition: var(--transition);
+    width: 100%;
+}
+
+/* Hover slides button right + changes color */
+.quick-action-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+    transform: translateX(5px);
+}
+
+/* Icon box inside quick action */
+.quick-action-btn i {
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ============================================
+   15. EMPTY STATE
+   ============================================
+   Shown when there is no data to display.
+   Centered icon + message.
+   Used in: any page with empty table/list
+   ============================================ */
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--border);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.empty-state h5 {
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+
+/* ============================================
+   16. CHART CONTAINER
+   ============================================
+   White box that wraps Chart.js charts.
+   Used in: dashboard pages for analytics.
+   ============================================ */
+
+.chart-container {
+    background: white;
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 25px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 0;
+}
+
+
+/* ============================================
+   17. LISTING CARDS
+   ============================================
+   Cards showing internship/training listings.
+   Used in: student/browse.php, landing page
+   ============================================ */
+
+.listing-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Lift + highlight on hover */
+.listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+/* Type badge (Internship / Vocational) */
+.listing-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.badge-internship {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.badge-vocational {
+    background: #FEF3C7;
+    color: #D97706;
+}
+
+/* Listing title */
+.listing-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+/* Company name below title */
+.listing-company {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+/* Small info chips (location, duration etc) */
+.listing-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    background: var(--light);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* Apply button on listing card */
+.btn-apply {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-apply:hover {
+    background: var(--primary-dark);
+    color: white;
+}
+
+/* Bookmark button on listing card */
+.bookmark-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--muted);
+}
+
+.bookmark-btn:hover,
+.bookmark-btn.bookmarked {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+
+/* ============================================
+   18. STATUS BADGES
+   ============================================
+   Small colored pills showing status.
+   Used in: applications table, listings etc.
+   ============================================ */
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-pending     { background: #FEF3C7; color: #D97706; }
+.status-accepted    { background: #D1FAE5; color: #059669; }
+.status-rejected    { background: #FEE2E2; color: #DC2626; }
+.status-shortlisted { background: #E0E7FF; color: #4338CA; }
+.status-completed   { background: #D1FAE5; color: #059669; }
+.status-withdrawn   { background: #F1F5F9; color: #64748B; }
+.status-active      { background: #D1FAE5; color: #059669; }
+.status-closed      { background: #FEE2E2; color: #DC2626; }
+.status-draft       { background: #F1F5F9; color: #64748B; }
+
+
+/* ============================================
+   19. FORM STYLES
+   ============================================
+   Custom styling for input fields, labels,
+   select dropdowns across all pages.
+   ============================================ */
+
+.form-control,
+.form-select {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+/* Focus state → purple border + glow */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Label above input */
+.form-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--dark);
+    margin-bottom: 6px;
+}
+
+
+/* ============================================
+   20. NOTIFICATION DROPDOWN
+   ============================================
+   Dropdown that appears when clicking bell.
+   Shows notification list.
+   Used in: includes/navbar.php
+   ============================================ */
+
+.notif-dropdown {
+    width: 300px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 0;
+    overflow: hidden;
+}
+
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.notif-header h6 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.notif-header small {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.notif-body {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+/* ============================================
+   21. ERROR & ALERT STYLES
+   ============================================
+   Custom error message styling.
+   Used with JS validation.
+   ============================================ */
+
+/* Error text below input fields */
+.error-text {
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+/* Red border on invalid input */
+.form-control.is-invalid {
+    border-color: var(--danger) !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+
+/* ============================================
+   22. BUTTONS
+   ============================================
+   Reusable button styles.
+   ============================================ */
+
+.btn-primary-custom {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-primary-custom:hover {
+    background: var(--primary-dark);
+    color: white;
+    transform: translateY(-1px);
+}
+
+
+/* ============================================
+   23. MOBILE RESPONSIVE
+   ============================================
+   Adjustments for tablet and mobile screens.
+   Sidebar becomes overlay on mobile.
+   ============================================ */
+
+/* Tablet and below (below 992px) */
+@media (max-width: 991.98px) {
+
+    /* Hide sidebar off-screen on mobile */
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    /* Show sidebar when active */
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Main content takes full width on mobile */
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* Small mobile (below 576px) */
+@media (max-width: 575.98px) {
+
+    .page-content {
+        padding: 15px;
+    }
+
+    .top-navbar {
+        padding: 12px 15px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .welcome-banner {
+        padding: 20px;
+    }
+
+    .section-card {
+        padding: 15px;
+    }
+}
