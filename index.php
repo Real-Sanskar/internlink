@@ -11,7 +11,7 @@ if(isLoggedIn()){
 $statsQuery = $conn->query("SELECT
     (SELECT COUNT(*) FROM users WHERE role='student') as students,
     (SELECT COUNT(*) FROM users WHERE role='company') as companies,
-    (SELECT COUNT(*) FROM listings WHERE status='actvie') as listings,
+    (SELECT COUNT(*) FROM listings WHERE status='active') as listings,
     (SELECT COUNT(*) FROM applications) as applications
 ");
 
